@@ -33,6 +33,34 @@ function CallbackFunc(Error, Results){
     Results.forEach(data => console.log(data));
 }
 
-let sql = ``
+// let sql = `
+// CREATE TABLE IF NOT EXISTS Users(
+//     ID TEXT PIMIARY KET,
+//     Username TEXT,
+//     Emali TEXT,
+//     DOB TEXT
+// );
+// `
+let sql = ` SELECT name FROM pragma_table_info("User");`
 
-db.exec(sql, CallbackFunc);
+let sql2 =`
+ALTER TABLE Users
+RENAME COLUMN Email to Emali
+`
+
+let sql3 = `
+INSERT INTO Users(ID,Username,Emali,DOB)
+VALUES("1234567","Timmy","timmy@failure.org","2005-10-28");
+`
+let sql4 =`SELECT * FROM Users;
+`
+let sql5 =`
+SELECT * FROM Users
+WHERE ID = "1234567";
+`
+let sql6 =`
+UPDATE Users
+SET Emali = "timmy@success.org"
+WHERE ID = "1234567";
+`
+db.all(sql6,CallbackFunc);
